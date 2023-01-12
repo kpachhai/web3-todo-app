@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import TodoAbi from './artifacts/contracts/Todo.sol/Todo.json'
+import TodoContractInfo from './TodoContractInfo'
+// import TodoTask from './TodoTask'
+import TodoTaskSC from './TodoTaskSC'
 
 function App() {
+  const todoContract = {
+    address: '0x5fbdb2315678afecb367f032d93f642f64180aa3',
+    abi: TodoAbi.abi,
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      <Row>
+        <ConnectButton />
+      </Row>
+      <TodoContractInfo todoContract={todoContract} />
+      <br />
+      {/* <TodoTask /> */}
+      <TodoTaskSC todoContract={todoContract} />
+    </Container>
+  )
 }
 
-export default App;
+export default App
